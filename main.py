@@ -1,9 +1,12 @@
-
 import flet as ft
 from cpu_chart import CpuChart
+from cpu_chart import HomePage
 
 
 def main(page: ft.Page):
+    # page.window_width = 350        
+    # page.window_height = 350 
+    # page.update()
     data_1 = [
         ft.LineChartData(
             data_points=[
@@ -21,10 +24,8 @@ def main(page: ft.Page):
             stroke_cap_round=True,
         )
     ]
-
-    ch = CpuChart()
     
-    page.add(ch)
+    page.add(HomePage(cpu_chart=CpuChart()))
     
     # data_1[0].data_points[0].x
 
