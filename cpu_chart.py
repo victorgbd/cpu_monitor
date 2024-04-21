@@ -69,7 +69,7 @@ class HomePage(ft.Container):
         self.cpu_chart = CpuChart()
         self.cpu_usage = 0
         self.text_cpu = ft.Text('Uso de CPU:{}%'.format(self.cpu_usage))
-        self.content = ft.Column(horizontal_alignment=ft.CrossAxisAlignment.END,controls=[ft.Container(height=200, content=self.cpu_chart), ft.Container(width=120,
+        self.content = ft.Column(horizontal_alignment=ft.CrossAxisAlignment.END,controls=[ft.Container(height=200, content=self.cpu_chart), ft.Container(width=125,
                                                                                                           height=50, content=self.text_cpu)])
 
     def did_mount(self):
