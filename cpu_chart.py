@@ -1,5 +1,3 @@
-from concurrent.futures import ThreadPoolExecutor
-from flet_core.connection import Connection
 import psutil
 import asyncio
 import flet as ft
@@ -71,8 +69,8 @@ class HomePage(ft.Container):
         self.cpu_chart = CpuChart()
         self.cpu_usage = 0
         self.text_cpu = ft.Text('Uso de CPU:{}%'.format(self.cpu_usage))
-        self.content = ft.Row(controls=[ft.Container(width=120,
-                                                     height=50, content=self.text_cpu), ft.Container(expand=1,height=200, content=self.cpu_chart)])
+        self.content = ft.Column(horizontal_alignment=ft.CrossAxisAlignment.END,controls=[ft.Container(height=200, content=self.cpu_chart), ft.Container(width=120,
+                                                                                                          height=50, content=self.text_cpu)])
 
     def did_mount(self):
         self.running = True
