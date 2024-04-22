@@ -1,7 +1,6 @@
-
 import flet as ft
 
-class CpuChart(ft.LineChart):
+class GpuChart(ft.LineChart):
     def __init__(self):
         super().__init__()
         self.interactive = False
@@ -58,12 +57,12 @@ class CpuChart(ft.LineChart):
 
         self.expand = True
 
-    def update_data(self, x, cpu_utilization,temp):
+    def update_data(self, x, gpu_utilization,temp):
         if len(self.data_series[0].data_points) > 20:
             self.data_series[0].data_points.pop(0)
             self.max_x = x
         self.data_series[0].data_points.append(
-            ft.LineChartDataPoint(x, cpu_utilization))
+            ft.LineChartDataPoint(x, gpu_utilization))
         self.min_x = self.data_series[0].data_points[0].x
         if len(self.data_series[1].data_points) > 20:
             self.data_series[1].data_points.pop(0)

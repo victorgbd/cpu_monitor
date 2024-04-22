@@ -1,49 +1,17 @@
 import sys
 import flet as ft
-from cpu_chart import HomePage
-import subprocess
+from charts import HomePage
 import fcntl
 import os
 
-from power_mode_utils import change_power_mode, get_current_power_mode, get_modes_avalible
-
-
-def verificar_contrasena(contrasena):
-    comando_verificación = f"echo {contrasena} | sudo -S echo autenticado"
-    try:
-        subprocess.run(comando_verificación, shell=True, check=True,
-                       stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        return True
-    except subprocess.CalledProcessError:
-        return False
-
-
-def ejecutar_con_sudo(comando, contrasena):
-    # Agregar 'sudo' al inicio del comando
-    comando_con_sudo = f"sudo {comando}"
-
-    # Verificar la contraseña
-    if not verificar_contrasena(contrasena):
-        print("Contraseña incorrecta. No se puede ejecutar el comando con permisos sudo.")
-        return
-
-    # Ejecutar el comando con permisos sudo
-    try:
-        salida = subprocess.run(comando_con_sudo, shell=True, check=True,
-                                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        print("Salida estándar:")
-        print(salida.stdout)
-        print("Salida de error:")
-        print(salida.stderr)
-    except subprocess.CalledProcessError as e:
-        print(f"Error al ejecutar el comando: {e}")
-
+from utils import Utils as ut
 
 def main(page: ft.Page):
     page.window_width = 750
-    page.window_height = 500
+    page.window_height = 700
     page.update()
-    modes = get_modes_avalible()
+    modes = ut.get_modes_avalible()
+   
     # radios=[]
     # for mode in modes:
     #     if mode == 'performance':
@@ -65,11 +33,11 @@ def main(page: ft.Page):
     page.add(HomePage())
 
     def radiogroup_changed(e):
-        change_power_mode(e.control.value, modes)
+        ut.change_power_mode(e.control.value, modes)
         page.update()
 
     # Obtenemos el perfil de energía actual
-    current_mode = get_current_power_mode()
+    current_mode = ut.get_current_power_mode()
     cg = ft.RadioGroup(value=current_mode, content=ft.Column(
         radios), on_change=radiogroup_changed)
 
