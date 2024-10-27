@@ -7,12 +7,14 @@ __pycache__/
 # C extensions
 *.so
 
+*.cfg
 # Distribution / packaging
 .Python
 build/
 develop-eggs/
 dist/
 dist2/
+bin/
 build2/
 cpu_monitor/
 downloads/
@@ -20,6 +22,7 @@ eggs/
 .eggs/
 lib/
 lib64/
+share/
 parts/
 sdist/
 var/

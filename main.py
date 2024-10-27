@@ -4,7 +4,7 @@ import flet as ft
 from charts import HomePage
 import fcntl
 import os
-import tkinter as tk
+# import tkinter as tk
 
 
 from utils import Utils as ut
@@ -51,42 +51,42 @@ def check_lock():
 
 
 
-def ejecutar_comando():
-    password = ""
+# def ejecutar_comando():
+#     password = ""
 
-    def submit_password():
-        password = password_entry.get()  # Obtén la contraseña ingresada
-        # Aquí podrías realizar alguna validación o acción con la contraseña
-        print("Contraseña ingresada:", password)
-        if ut.validate_sudo_password(password):
-            root.destroy()
+#     def submit_password():
+#         password = password_entry.get()  # Obtén la contraseña ingresada
+#         # Aquí podrías realizar alguna validación o acción con la contraseña
+#         print("Contraseña ingresada:", password)
+#         if ut.validate_sudo_password(password):
+#             root.destroy()
         
 
-    root = tk.Tk()
+#     root = tk.Tk()
 
-    # Etiqueta y campo de entrada para la contraseña
-    password_label = tk.Label(root, text="Contraseña:")
-    password_label.pack()
+#     # Etiqueta y campo de entrada para la contraseña
+#     password_label = tk.Label(root, text="Contraseña:")
+#     password_label.pack()
 
-    password_entry = tk.Entry(root, show="*")  # La opción show="*" muestra asteriscos en lugar del texto
-    password_entry.pack()
+#     password_entry = tk.Entry(root, show="*")  # La opción show="*" muestra asteriscos en lugar del texto
+#     password_entry.pack()
 
-    # Botón para enviar la contraseña
-    submit_button = tk.Button(root, text="Ingresar", command=submit_password)
-    submit_button.pack()
+#     # Botón para enviar la contraseña
+#     submit_button = tk.Button(root, text="Ingresar", command=submit_password)
+#     submit_button.pack()
 
-    root.mainloop()
+#     root.mainloop()
 
-    # Comando sudo que quieres ejecutar
-    sudo_command = f"echo {password} | sudo -S echo hola"
+#     # Comando sudo que quieres ejecutar
+#     sudo_command = f"echo {password} | sudo -S echo hola"
 
-    try:
-        subprocess.run(
-                sudo_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
-        # process = subprocess.Popen(sudo_command, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
-        # stdout, stderr = process.communicate()
-    except Exception as e:
-        print("Error:", e)
+#     try:
+#         subprocess.run(
+#                 sudo_command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='utf-8')
+#         # process = subprocess.Popen(sudo_command, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+#         # stdout, stderr = process.communicate()
+#     except Exception as e:
+#         print("Error:", e)
 
    
 
@@ -94,7 +94,7 @@ if __name__ == "__main__":
     if check_lock():
         pass
     else:
-        ejecutar_comando()
+        # ejecutar_comando()
         print("La aplicación se está ejecutando por primera vez.")
         ft.app(main)
         
